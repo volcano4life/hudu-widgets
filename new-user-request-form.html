@@ -399,6 +399,30 @@
           <span class="hint">Leave blank if not applicable</span>
         </div>
 
+        <div class="field full-width">
+          <label for="m365licence">Microsoft 365 Licence Required <span class="req">*</span></label>
+          <select id="m365licence" name="m365licence" required>
+            <option value="" disabled selected>— Select a licence type —</option>
+            <option value="Microsoft 365 Business Basic">Microsoft 365 Business Basic — email, Teams &amp; OneDrive only (no desktop Office apps)</option>
+            <option value="Microsoft 365 Business Standard">Microsoft 365 Business Standard — email, Teams &amp; full Office desktop apps (Word, Excel, etc.)</option>
+            <option value="Microsoft 365 Business Premium">Microsoft 365 Business Premium — Business Standard + Intune device management &amp; Defender</option>
+            <option value="Microsoft 365 Apps for Business">Microsoft 365 Apps for Business — Office desktop apps + OneDrive only (no Exchange email)</option>
+            <option value="Microsoft 365 F1 (Frontline Worker)">Microsoft 365 F1 — Frontline Worker, web &amp; mobile apps only (no desktop Office)</option>
+            <option value="Microsoft 365 F3 (Frontline Worker)">Microsoft 365 F3 — Frontline Worker + Office desktop apps &amp; Intune</option>
+            <option value="Office 365 E1">Office 365 E1 — email, Teams &amp; web Office apps (enterprise, no desktop Office)</option>
+            <option value="Office 365 E3">Office 365 E3 — email, Teams &amp; full desktop Office apps (enterprise)</option>
+            <option value="Office 365 E5">Office 365 E5 — E3 + advanced security, compliance &amp; analytics (enterprise)</option>
+            <option value="Transfer licence from leaver">Transfer licence from leaver — reassign an existing licence from a departing user</option>
+          </select>
+          <span class="hint">Not sure which to choose? Call us on 0333 999 7355 — we can advise before you submit.</span>
+        </div>
+
+        <div class="field full-width" id="leaverNameField" style="display:none">
+          <label for="leaverName">Leaver's name (licence to transfer) <span class="req">*</span></label>
+          <input type="text" id="leaverName" name="leaverName" placeholder="e.g. John Doe">
+          <span class="hint">The account whose licence will be reassigned to the new user</span>
+        </div>
+
         <div class="field">
           <label>New laptop required?</label>
           <div class="radio-group" style="margin-top: 4px;">
@@ -527,6 +551,20 @@
   // Set today's date as default for auth date
   document.getElementById('authDate').valueAsDate = new Date();
 
+  // Show/hide leaver name field based on licence selection
+  document.getElementById('m365licence').addEventListener('change', function() {
+    const leaverField = document.getElementById('leaverNameField');
+    const leaverInput = document.getElementById('leaverName');
+    if (this.value === 'Transfer licence from leaver') {
+      leaverField.style.display = '';
+      leaverInput.required = true;
+    } else {
+      leaverField.style.display = 'none';
+      leaverInput.required = false;
+      leaverInput.value = '';
+    }
+  });
+
   function submitForm() {
     const form = document.getElementById('newUserForm');
     const required = form.querySelectorAll('[required]');
@@ -573,6 +611,8 @@
       `Logon Username:              ${g('username')}`,
       `Logon Password:              ${g('password')}`,
       `Account to copy from:        ${g('copyFrom')}`,
+      `M365 Licence Required:       ${g('m365licence')}`,
+      `Leaver (licence transfer):   ${g('leaverName')}`,
       `New Laptop Required:         ${r('newLaptop')}`,
       `Existing Machine Name:       ${g('machineName')}`,
       '',
