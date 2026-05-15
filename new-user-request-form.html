@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>New User Request — a8 Managed Technologies</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+    background: #f0f2f5;
+    color: #1a2332;
+    min-height: 100vh;
+    padding: 40px 16px 60px;
+  }
+
+  .page-wrapper {
+    max-width: 740px;
+    margin: 0 auto;
+  }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, #0b1a2e 0%, #112240 100%);
+    border-radius: 16px 16px 0 0;
+    padding: 32px 40px 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .header-text h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+  }
+
+  .header-text p {
+    font-size: 13px;
+    color: #7b9cc4;
+    font-weight: 400;
+  }
+
+  .header-badge {
+    background: rgba(0,200,180,0.12);
+    border: 1px solid rgba(0,200,180,0.25);
+    border-radius: 8px;
+    padding: 6px 14px;
+    text-align: right;
+    flex-shrink: 0;
+    margin-left: 16px;
+  }
+
+  .header-badge .ref {
+    font-size: 10px;
+    color: #00c8b4;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    display: block;
+  }
+
+  .header-badge .doc-id {
+    font-size: 16px;
+    font-weight: 700;
+    color: #00c8b4;
+  }
+
+  /* Notice banner */
+  .notice {
+    background: #fff8ed;
+    border-left: 4px solid #f59e0b;
+    padding: 14px 20px;
+    font-size: 13px;
+    color: #78480c;
+    line-height: 1.6;
+  }
+
+  .notice strong { font-weight: 600; }
+
+  /* Form body */
+  .form-body {
+    background: #ffffff;
+    padding: 36px 40px;
+    border-radius: 0 0 16px 16px;
+    border: 1px solid #dce3ec;
+    border-top: none;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e8edf3;
+  }
+
+  .section-icon {
+    width: 32px;
+    height: 32px;
+    background: #e8f4ff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: #1a6fbe;
+  }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #0b1a2e;
+    letter-spacing: -0.1px;
+  }
+
+  /* Grid layout */
+  .field-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px 20px;
+  }
+
+  .field-grid .full-width { grid-column: 1 / -1; }
+
+  /* Field */
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  label {
+    font-size: 12px;
+    font-weight: 600;
+    color: #556880;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  label .req {
+    color: #e05252;
+    margin-left: 2px;
+  }
+
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  input[type="password"],
+  textarea,
+  select {
+    width: 100%;
+    padding: 10px 13px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #1a2332;
+    background: #f7f9fc;
+    border: 1.5px solid #d2dce8;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+    -webkit-appearance: none;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="date"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border-color: #1a6fbe;
+    background: #fff;
+    box-shadow: 0 0 0 3px rgba(26, 111, 190, 0.1);
+  }
+
+  input::placeholder, textarea::placeholder { color: #a3b5c6; }
+
+  textarea { resize: vertical; min-height: 80px; }
+
+  select {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23556880' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 32px;
+    cursor: pointer;
+  }
+
+  /* Radio / Checkbox group */
+  .radio-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .radio-opt {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .radio-opt input[type="radio"] {
+    width: 16px;
+    height: 16px;
+    accent-color: #1a6fbe;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+
+  .radio-opt span {
+    font-size: 14px;
+    color: #1a2332;
+    font-weight: 400;
+  }
+
+  /* Hint text */
+  .hint {
+    font-size: 11.5px;
+    color: #8fa5bc;
+    margin-top: 2px;
+    line-height: 1.5;
+  }
+
+  /* Divider */
+  hr {
+    border: none;
+    border-top: 1px dashed #dce3ec;
+    margin: 28px 0;
+  }
+
+  /* Footer / Submit */
+  .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 2px solid #e8edf3;
+    flex-wrap: wrap;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: #8fa5bc;
+    line-height: 1.6;
+    max-width: 320px;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    background: #0b1a2e;
+    color: #ffffff;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .btn-submit:hover { background: #1a3554; }
+  .btn-submit:active { transform: scale(0.98); }
+
+  .btn-submit svg {
+    width: 16px;
+    height: 16px;
+    stroke: #00c8b4;
+    flex-shrink: 0;
+  }
+
+  /* Validation */
+  input:invalid:not(:placeholder-shown),
+  select:invalid:not([value=""]) {
+    border-color: #e05252;
+  }
+
+  .validation-msg {
+    display: none;
+    background: #fff0f0;
+    border: 1px solid #f8d0d0;
+    color: #b03030;
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-top: 16px;
+  }
+
+  .validation-msg.show { display: block; }
+
+  @media (max-width: 600px) {
+    .header { padding: 24px 20px 20px; flex-direction: column; gap: 14px; }
+    .header-badge { margin-left: 0; }
+    .form-body { padding: 24px 20px; }
+    .field-grid { grid-template-columns: 1fr; }
+    .form-footer { flex-direction: column; align-items: stretch; }
+    .btn-submit { justify-content: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-wrapper">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-text">
+      <h1>New User Request</h1>
+      <p>a8 Managed Technologies &nbsp;·&nbsp; IT Support</p>
+    </div>
+    <div class="header-badge">
+      <span class="ref">Form Ref</span>
+      <span class="doc-id">NU-001</span>
+    </div>
+  </div>
+
+  <!-- Notice -->
+  <div class="notice">
+    <strong>Please read before completing:</strong> This form must be submitted by an Authorised Contact. 
+    New User Request Forms must be submitted <strong>at least five working days</strong> before the account is required, 
+    to allow time for licences and services to be provisioned. One form per new user.
+  </div>
+
+  <!-- Form -->
+  <form class="form-body" id="newUserForm" novalidate>
+
+    <!-- Section 1: User Details -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <span class="section-title">User Details</span>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="forename">Forename <span class="req">*</span></label>
+          <input type="text" id="forename" name="forename" placeholder="First name" required>
+        </div>
+
+        <div class="field">
+          <label for="surname">Surname <span class="req">*</span></label>
+          <input type="text" id="surname" name="surname" placeholder="Last name" required>
+        </div>
+
+        <div class="field full-width">
+          <label for="jobtitle">Office / Department / Job Title <span class="req">*</span></label>
+          <input type="text" id="jobtitle" name="jobtitle" placeholder="e.g. Finance / Accounts Payable / Accounts Assistant" required>
+        </div>
+
+        <div class="field">
+          <label for="startdate">Start Date <span class="req">*</span></label>
+          <input type="date" id="startdate" name="startdate" required>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="firstname.lastname@company.com">
+        </div>
+
+        <div class="field">
+          <label for="username">Logon Username</label>
+          <input type="text" id="username" name="username" placeholder="e.g. jsmith">
+        </div>
+
+        <div class="field">
+          <label for="password">Logon Password</label>
+          <input type="text" id="password" name="password" placeholder="Temporary password (if known)">
+        </div>
+
+        <div class="field">
+          <label for="copyFrom">Account to be copied from</label>
+          <input type="text" id="copyFrom" name="copyFrom" placeholder="Username of account to copy">
+          <span class="hint">Leave blank if not applicable</span>
+        </div>
+
+        <div class="field">
+          <label>New laptop required?</label>
+          <div class="radio-group" style="margin-top: 4px;">
+            <label class="radio-opt"><input type="radio" name="newLaptop" value="Yes"><span>Yes</span></label>
+            <label class="radio-opt"><input type="radio" name="newLaptop" value="No" checked><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="machineName">Existing machine name to set up</label>
+          <input type="text" id="machineName" name="machineName" placeholder="e.g. DESKTOP-AB1234">
+          <span class="hint">If new laptop required, leave blank</span>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 2: Services & Access -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+          </svg>
+        </div>
+        <span class="section-title">Services &amp; Access Requirements</span>
+      </div>
+
+      <div class="field-grid">
+        <div class="field full-width">
+          <label for="emailGroups">Email Groups</label>
+          <input type="text" id="emailGroups" name="emailGroups" placeholder="e.g. info@company.com, sales@company.com">
+          <span class="hint">List any email distribution groups the user should be added to</span>
+        </div>
+
+        <div class="field full-width">
+          <label for="mailboxAccess">Additional Mailbox Access</label>
+          <input type="text" id="mailboxAccess" name="mailboxAccess" placeholder="e.g. accounts@company.com">
+          <span class="hint">Shared mailboxes this user needs access to</span>
+        </div>
+
+        <div class="field">
+          <label>Remote Access — VPN</label>
+          <div class="radio-group" style="margin-top: 4px;">
+            <label class="radio-opt"><input type="radio" name="vpn" value="Yes"><span>Yes</span></label>
+            <label class="radio-opt"><input type="radio" name="vpn" value="No" checked><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>Remote Access — Terminal Server</label>
+          <div class="radio-group" style="margin-top: 4px;">
+            <label class="radio-opt"><input type="radio" name="terminalServer" value="Yes"><span>Yes</span></label>
+            <label class="radio-opt"><input type="radio" name="terminalServer" value="No" checked><span>No</span></label>
+          </div>
+        </div>
+
+        <div class="field full-width">
+          <label for="sharedDrives">Network / Shared Drive Access</label>
+          <input type="text" id="sharedDrives" name="sharedDrives" placeholder="e.g. \\server\Finance, \\server\Shared">
+          <span class="hint">Specify drive paths or folder names</span>
+        </div>
+
+        <div class="field full-width">
+          <label for="otherNotes">Other Notes</label>
+          <textarea id="otherNotes" name="otherNotes" placeholder="Any additional requirements, software licences, or instructions…"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+
+    <!-- Section 3: Authorisation -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <span class="section-title">Authorisation</span>
+      </div>
+
+      <div class="field-grid">
+        <div class="field">
+          <label for="authName">Authorised by (Name) <span class="req">*</span></label>
+          <input type="text" id="authName" name="authName" placeholder="Full name" required>
+        </div>
+
+        <div class="field">
+          <label for="authCompany">Company <span class="req">*</span></label>
+          <input type="text" id="authCompany" name="authCompany" placeholder="Company name" required>
+        </div>
+
+        <div class="field">
+          <label for="authDate">Date of Authorisation <span class="req">*</span></label>
+          <input type="date" id="authDate" name="authDate" required>
+        </div>
+      </div>
+    </div>
+
+    <!-- Validation message -->
+    <div class="validation-msg" id="validationMsg">
+      Please complete all required fields (marked with *) before submitting.
+    </div>
+
+    <!-- Footer -->
+    <div class="form-footer">
+      <p class="footer-note">
+        Submitting will open your email client with this form pre-filled,<br>
+        ready to send to <strong>itsupport@a8mt.co.uk</strong>
+      </p>
+      <button type="button" class="btn-submit" onclick="submitForm()">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Send to IT Support
+      </button>
+    </div>
+
+  </form>
+</div>
+
+<script>
+  // Set today's date as default for auth date
+  document.getElementById('authDate').valueAsDate = new Date();
+
+  function submitForm() {
+    const form = document.getElementById('newUserForm');
+    const required = form.querySelectorAll('[required]');
+    let valid = true;
+
+    required.forEach(el => {
+      if (!el.value.trim()) {
+        el.style.borderColor = '#e05252';
+        valid = false;
+      } else {
+        el.style.borderColor = '';
+      }
+    });
+
+    if (!valid) {
+      document.getElementById('validationMsg').classList.add('show');
+      return;
+    }
+
+    document.getElementById('validationMsg').classList.remove('show');
+
+    const g = id => document.getElementById(id)?.value?.trim() || '(not provided)';
+    const r = name => {
+      const el = document.querySelector(`input[name="${name}"]:checked`);
+      return el ? el.value : '(not specified)';
+    };
+
+    const startDateRaw = document.getElementById('startdate').value;
+    const startDate = startDateRaw ? new Date(startDateRaw).toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'}) : '(not provided)';
+    const authDateRaw = document.getElementById('authDate').value;
+    const authDate = authDateRaw ? new Date(authDateRaw).toLocaleDateString('en-GB', {day:'2-digit',month:'long',year:'numeric'}) : '(not provided)';
+
+    const body = [
+      'NEW USER REQUEST',
+      '=====================================',
+      '',
+      'USER DETAILS',
+      '------------',
+      `Forename:                    ${g('forename')}`,
+      `Surname:                     ${g('surname')}`,
+      `Office / Dept / Job Title:   ${g('jobtitle')}`,
+      `Start Date:                  ${startDate}`,
+      `Email Address:               ${g('email')}`,
+      `Logon Username:              ${g('username')}`,
+      `Logon Password:              ${g('password')}`,
+      `Account to copy from:        ${g('copyFrom')}`,
+      `New Laptop Required:         ${r('newLaptop')}`,
+      `Existing Machine Name:       ${g('machineName')}`,
+      '',
+      'SERVICES & ACCESS REQUIREMENTS',
+      '-------------------------------',
+      `Email Groups:                ${g('emailGroups')}`,
+      `Additional Mailbox Access:   ${g('mailboxAccess')}`,
+      `Remote Access (VPN):         ${r('vpn')}`,
+      `Remote Access (Terminal):    ${r('terminalServer')}`,
+      `Network / Shared Drives:     ${g('sharedDrives')}`,
+      `Other Notes:                 ${g('otherNotes')}`,
+      '',
+      'AUTHORISATION',
+      '--------------',
+      `Authorised by:               ${g('authName')}`,
+      `Company:                     ${g('authCompany')}`,
+      `Date of Authorisation:       ${authDate}`,
+      '',
+      '=====================================',
+      'Submitted via a8 New User Request Form',
+    ].join('\n');
+
+    const subject = encodeURIComponent(`New User Request – ${g('forename')} ${g('surname')} (Start: ${startDate})`);
+    const encodedBody = encodeURIComponent(body);
+
+    window.location.href = `mailto:itsupport@a8mt.co.uk?subject=${subject}&body=${encodedBody}`;
+  }
+</script>
+</body>
+</html>
