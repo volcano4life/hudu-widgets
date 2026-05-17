@@ -893,6 +893,8 @@
      RESPONSIVE
      ============================================================ */
   @media (max-width: 640px) {
+    .rmm-tray-extra  { display: none; }
+    .rmm-task-chip   { display: none; }
     .header-inner    { padding: 26px 18px 30px; }
     .sticky-nav-inner { padding: 0 14px; }
     .page-body       { padding: 28px 14px 56px; }
@@ -933,9 +935,13 @@
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(194,224,0,0.22);
     border-radius: 10px;
-    overflow: hidden;
+    overflow: visible;
     position: relative;
     margin-top: 0;
+  }
+  .rmm-mockup-label,
+  .rmm-caption {
+    border-radius: 0;
   }
   .rmm-mockup-label {
     padding: 11px 18px;
@@ -1478,9 +1484,9 @@
             <div class="rmm-task-chip">&#128193; Explorer</div>
           </div>
           <div class="rmm-taskbar-right">
-            <span class="rmm-tray-icon">&#128266;</span>
-            <span class="rmm-tray-icon">&#8599;</span>
-            <span class="rmm-tray-icon">&#9729;</span>
+            <span class="rmm-tray-icon rmm-tray-extra">&#128266;</span>
+            <span class="rmm-tray-icon rmm-tray-extra">&#8599;</span>
+            <span class="rmm-tray-icon rmm-tray-extra">&#9729;</span>
             <span class="rmm-tray-a8">a8</span>
             <span class="rmm-tray-clock">15:39<br>05/05/2026</span>
           </div>
