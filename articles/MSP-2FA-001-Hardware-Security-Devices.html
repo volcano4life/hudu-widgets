@@ -418,5 +418,24 @@
   <div style="box-sizing: border-box;margin: 0;padding: 0;margin-top: 6px;font-size: 10px">v1.0 · May 2026</div>
 </div>
 </div>
+
+<script>
+(function(){
+  function notifyHeight(){
+    var h = Math.max(
+      document.body.scrollHeight,
+      document.documentElement.scrollHeight
+    );
+    window.parent.postMessage({type:'a8-iframe-resize',height:h},'*');
+  }
+  // Fire on load and on every resize
+  window.addEventListener('load', notifyHeight);
+  window.addEventListener('resize', notifyHeight);
+  // Also watch for content changes (images loading, accordion expand etc.)
+  if(window.ResizeObserver){
+    new ResizeObserver(notifyHeight).observe(document.body);
+  }
+})();
+</script>
 </body>
 </html>
