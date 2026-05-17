@@ -979,9 +979,22 @@
     cursor: default;
   }
   .rmm-menu-highlight {
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.95);
+    font-weight: 600;
+    padding: 7px 14px;
+    font-size: 13px;
+    cursor: default;
+  }
+  .rmm-menu-highlight:first-child {
+    border-bottom: none;
+  }
+  .rmm-menu-open {
     background: #0078d4;
     color: #fff;
     font-weight: 600;
+    padding: 7px 14px;
+    font-size: 13px;
   }
   .rmm-menu-sep { height: 1px; background: rgba(255,255,255,0.1); margin: 3px 0; }
   .rmm-menu-status {
@@ -1447,11 +1460,16 @@
       <div class="rmm-mockup-label">💻 RMM Agent &mdash; look for this icon in your system tray</div>
       <div class="rmm-screen">
         <div class="rmm-context-menu">
-          <div class="rmm-menu-title">Remote Agent</div>
-          <div class="rmm-menu-item rmm-menu-highlight">&#9658; Get Help</div>
-          <div class="rmm-menu-item">&#9658; Submit a Ticket</div>
+          <div class="rmm-menu-highlight">Take screenshot and request support</div>
+          <div class="rmm-menu-highlight">Request support</div>
+          <div class="rmm-menu-item rmm-menu-muted">Close all remote connections</div>
+          <div class="rmm-menu-item rmm-menu-open">Open</div>
           <div class="rmm-menu-sep"></div>
-          <div class="rmm-menu-status"><span class="rmm-status-dot"></span> Connected &mdash; Active8 Managed Technologies</div>
+          <div class="rmm-menu-item rmm-menu-muted">Privacy Mode Options</div>
+          <div class="rmm-menu-item rmm-menu-muted">Settings</div>
+          <div class="rmm-menu-sep"></div>
+          <div class="rmm-menu-item rmm-menu-muted">Restart</div>
+          <div class="rmm-menu-item rmm-menu-muted">Exit</div>
         </div>
         <div class="rmm-arrow">&#9660;</div>
         <div class="rmm-taskbar">
@@ -1469,7 +1487,7 @@
           </div>
         </div>
       </div>
-      <div class="rmm-caption">Right-click the <strong>a8</strong> icon in the bottom-right corner of your screen and select <strong>Get Help</strong> or <strong>Submit a Ticket</strong> to raise a request with IT Support.</div>
+      <div class="rmm-caption">Right-click the <strong>a8</strong> icon in the bottom-right corner of your screen and select <strong>Take screenshot and request support</strong> or <strong>Request support</strong> to raise a ticket with IT Support.</div>
     </div>
   </div>
 
