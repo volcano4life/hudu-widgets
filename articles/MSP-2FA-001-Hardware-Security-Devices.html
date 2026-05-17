@@ -1488,10 +1488,17 @@
     window.parent.postMessage({type:'a8-iframe-resize', height:h}, '*');
     try { if(window.frameElement) window.frameElement.style.height = (h+20)+'px'; } catch(e){}
   }
+  // Fire immediately, on load, on resize, and via ResizeObserver
+  sendHeight();
   window.addEventListener('load', sendHeight);
   window.addEventListener('resize', sendHeight);
   if(window.ResizeObserver){ new ResizeObserver(sendHeight).observe(document.body); }
-  sendHeight();
+  // Retry every 300ms for 12 seconds to survive any parent-side load race
+  var attempts = 0;
+  var timer = setInterval(function(){
+    sendHeight();
+    if(++attempts >= 40) clearInterval(timer);
+  }, 300);
 })();
 </script>
 
