@@ -15,51 +15,13 @@
     background: #f7f9fc;
   }
 
-  .top-bar {
-    height: 5px;
-    background: linear-gradient(90deg, #8aaa00 0%, #c2e000 50%, #8aaa00 100%);
-  }
 
-  .page-header {
-    background: linear-gradient(135deg, #1e4aa0 0%, #2557b7 60%, #1e4aa0 100%);
-    color: white;
-  }
 
-  .header-inner { padding: 44px 40px 48px; }
 
-  .header-eyebrow {
-    font-family: 'Courier New', Consolas, monospace;
-    font-size: 11px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #c2e000;
-    margin-bottom: 14px;
-  }
 
-  .page-header h1 {
-    font-family: Georgia, 'Times New Roman', serif;
-    font-size: clamp(24px, 5vw, 42px);
-    font-weight: 400;
-    line-height: 1.15;
-    color: #fff;
-    margin-bottom: 16px;
-  }
 
-  .page-header h1 em { font-style: italic; color: #c2e000; }
 
-  .header-meta {
-    display: flex;
-    gap: 18px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-  }
 
-  .meta-item {
-    font-family: 'Courier New', Consolas, monospace;
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: rgba(255,255,255,0.42);
-  }
 
   /* NAV */
   .sticky-nav {
@@ -891,17 +853,7 @@
   }
 
   /* FOOTER */
-  .page-footer {
-    background: #1a3f8f;
-    color: rgba(255,255,255,0.42);
-    text-align: center;
-    font-size: 12px;
-    font-family: 'Courier New', Consolas, monospace;
-    letter-spacing: 0.04em;
-    padding: 22px 28px;
-  }
 
-  .page-footer span { color: rgba(255,255,255,0.65); }
 
   /* ============================================================
      RESPONSIVE
@@ -909,7 +861,6 @@
   @media (max-width: 640px) {
     .rmm-tray-extra  { display: none; }
     .rmm-task-chip   { display: none; }
-    .header-inner    { padding: 26px 18px 30px; }
     .sticky-nav-inner { padding: 0 14px; }
     .page-body       { padding: 28px 14px 56px; }
 
@@ -1124,20 +1075,7 @@
 </head>
 <body>
 
-<div class="top-bar"></div>
 
-<header class="page-header">
-  <div class="header-inner">
-    <div class="header-eyebrow">Active8 Managed Technologies &middot; IT Service Management</div>
-    <h1>Two-Factor Authentication<br><em>Hardware Security Devices</em></h1>
-    <div class="header-meta">
-      <span class="meta-item">Category &middot; Security</span>
-      <span class="meta-item">Audience &middot; All Staff &amp; IT Support</span>
-      <span class="meta-item">Last Reviewed &middot; May 2026</span>
-      <span class="meta-item">v1.0</span>
-    </div>
-  </div>
-</header>
 
 <nav class="sticky-nav">
   <div class="sticky-nav-inner">
@@ -1529,10 +1467,7 @@
 
 </main>
 
-<footer class="page-footer">
-  <div>Prepared by <span>Active8 Managed Technologies Limited</span> &middot; IT Service Management</div>
-  <div style="margin-top:6px; font-size:10px;">v1.0 &middot; May 2026 &middot; This article is maintained by the IT team &mdash; raise a ticket if anything is out of date.</div>
-</footer>
+
 
 <script>
 (function(){
