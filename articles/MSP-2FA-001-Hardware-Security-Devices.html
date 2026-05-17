@@ -927,6 +927,151 @@
     .step-title     { font-size: 18px; }
     .device-name    { font-size: 17px; }
   }
+
+  /* RMM TRAY MOCKUP */
+  .rmm-mockup {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(194,224,0,0.22);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    margin-top: 0;
+  }
+  .rmm-mockup-label {
+    padding: 11px 18px;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: rgba(255,255,255,0.5);
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .rmm-screen {
+    padding: 16px 18px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+  .rmm-context-menu {
+    background: #2b2b2b;
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 4px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.55);
+    min-width: 190px;
+    overflow: hidden;
+    margin-right: 22px;
+  }
+  .rmm-menu-title {
+    padding: 8px 14px 6px;
+    font-size: 11px;
+    font-family: 'Courier New', Consolas, monospace;
+    color: rgba(255,255,255,0.32);
+    letter-spacing: 0.06em;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    text-transform: uppercase;
+  }
+  .rmm-menu-item {
+    padding: 7px 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.82);
+    cursor: default;
+  }
+  .rmm-menu-highlight {
+    background: #0078d4;
+    color: #fff;
+    font-weight: 600;
+  }
+  .rmm-menu-sep { height: 1px; background: rgba(255,255,255,0.1); margin: 3px 0; }
+  .rmm-menu-status {
+    padding: 6px 14px;
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+  .rmm-status-dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: #4ade80;
+    flex-shrink: 0;
+  }
+  .rmm-arrow {
+    color: #c2e000;
+    font-size: 20px;
+    margin-right: 26px;
+    margin-top: 4px;
+    animation: rmmBounce 1.4s ease-in-out infinite;
+    line-height: 1;
+  }
+  @keyframes rmmBounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(5px); }
+  }
+  .rmm-taskbar {
+    width: 100%;
+    background: #1c1c1c;
+    border-top: 1px solid rgba(255,255,255,0.07);
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 8px 0 4px;
+    margin-top: 0;
+  }
+  .rmm-taskbar-left { display: flex; align-items: center; gap: 2px; }
+  .rmm-start {
+    font-size: 15px;
+    padding: 5px 9px;
+    color: rgba(255,255,255,0.7);
+  }
+  .rmm-task-chip {
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.55);
+    white-space: nowrap;
+  }
+  .rmm-taskbar-right { display: flex; align-items: center; gap: 7px; padding-right: 2px; }
+  .rmm-tray-icon { font-size: 13px; color: rgba(255,255,255,0.5); }
+  .rmm-tray-a8 {
+    background: #c2e000;
+    color: #1a2500;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 9px;
+    font-weight: 900;
+    padding: 2px 5px;
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(194,224,0,0.7), 0 0 0 2px rgba(194,224,0,0.2);
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+  }
+  .rmm-tray-clock {
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 10px;
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    line-height: 1.3;
+    white-space: nowrap;
+  }
+  .rmm-caption {
+    padding: 11px 18px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    border-top: 1px solid rgba(255,255,255,0.08);
+    line-height: 1.55;
+    margin-top: 0;
+  }
+  .rmm-caption strong { color: #c2e000; }
+
 </style>
 </head>
 <body>
@@ -1298,9 +1443,34 @@
         </div>
       </a>
     </div>
-    <div class="rmm-note">
-      <span style="font-size:18px; flex-shrink:0;">💻</span>
-      <span>You can also raise a ticket through your <strong>RMM agent</strong> &mdash; look for the IT Support icon in your system tray (bottom-right corner of your screen) and click <strong>Get Help</strong> or <strong>Submit a Ticket</strong>.</span>
+    <div class="rmm-mockup">
+      <div class="rmm-mockup-label">💻 RMM Agent &mdash; look for this icon in your system tray</div>
+      <div class="rmm-screen">
+        <div class="rmm-context-menu">
+          <div class="rmm-menu-title">Remote Agent</div>
+          <div class="rmm-menu-item rmm-menu-highlight">&#9658; Get Help</div>
+          <div class="rmm-menu-item">&#9658; Submit a Ticket</div>
+          <div class="rmm-menu-item">&#9658; Remote Support Session</div>
+          <div class="rmm-menu-sep"></div>
+          <div class="rmm-menu-status"><span class="rmm-status-dot"></span> Connected &mdash; Active8 Managed Technologies</div>
+        </div>
+        <div class="rmm-arrow">&#9660;</div>
+        <div class="rmm-taskbar">
+          <div class="rmm-taskbar-left">
+            <div class="rmm-start">&#10219;</div>
+            <div class="rmm-task-chip">&#128269; Search</div>
+            <div class="rmm-task-chip">&#128193; Explorer</div>
+          </div>
+          <div class="rmm-taskbar-right">
+            <span class="rmm-tray-icon">&#128266;</span>
+            <span class="rmm-tray-icon">&#8599;</span>
+            <span class="rmm-tray-icon">&#9729;</span>
+            <span class="rmm-tray-a8">a8</span>
+            <span class="rmm-tray-clock">15:39<br>05/05/2026</span>
+          </div>
+        </div>
+      </div>
+      <div class="rmm-caption">Right-click the <strong>a8</strong> icon in the bottom-right corner of your screen and select <strong>Get Help</strong> or <strong>Submit a Ticket</strong> to raise a request with IT Support.</div>
     </div>
   </div>
 
