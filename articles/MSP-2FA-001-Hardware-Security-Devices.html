@@ -421,20 +421,24 @@
 
 <script>
 (function(){
+  // 1. Tell the parent page what height we need (in case it has a listener)
   function notifyHeight(){
-    var h = Math.max(
-      document.body.scrollHeight,
-      document.documentElement.scrollHeight
-    );
-    window.parent.postMessage({type:'a8-iframe-resize',height:h},'*');
+    var h = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+    window.parent.postMessage({type:'a8-iframe-resize', height:h}, '*');
+    // 2. Also set the iframe's own height via fragment navigation trick so
+    //    the parent iframe element can match — works when same-origin, silently
+    //    ignored cross-origin. Belt-and-braces.
+    try {
+      if(window.frameElement) window.frameElement.style.height = (h + 20) + 'px';
+    } catch(e){}
   }
-  // Fire on load and on every resize
   window.addEventListener('load', notifyHeight);
   window.addEventListener('resize', notifyHeight);
-  // Also watch for content changes (images loading, accordion expand etc.)
   if(window.ResizeObserver){
     new ResizeObserver(notifyHeight).observe(document.body);
   }
+  // Fire once immediately in case load already fired
+  notifyHeight();
 })();
 </script>
 </body>
